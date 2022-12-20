@@ -9,8 +9,14 @@ class Server{
         //crear la aplicación de express como propiedad de la clase
         this.app = express();
         this.port = process.env.PORT;
-        this.usuariosPath = '/api/usuarios';
-        this.usuarioAuth  = '/api/auth';
+
+        this.path = {
+            usuarioAuth :'/api/auth',
+            buscarTermino :'/api/buscar',
+            categorias  :'/api/categorias',
+            productosPath: '/api/productos',
+            usuariosPath:'/api/usuarios'
+        }
 
         //conexión db
         this.conectarDb();
@@ -40,8 +46,11 @@ class Server{
 
     routes(){
 
-        this.app.use(this.usuarioAuth, require('../routes/auth'));
-        this.app.use(this.usuariosPath, require('../routes/usuarios'));
+        this.app.use(this.path.usuarioAuth, require('../routes/auth'));
+        this.app.use(this.path.buscarTermino, require('../routes/buscar'));
+        this.app.use(this.path.categorias, require('../routes/categorias'));
+        this.app.use(this.path.productosPath, require('../routes/productos'));
+        this.app.use(this.path.usuariosPath, require('../routes/usuarios'));
 
     }
 

@@ -75,9 +75,9 @@ const usuariosPatch = (req, res=response) => {
     });
 
 }
-const usuariosDelete = async(req, res=response) => {
+const usuariosDelete = async(req, res = response) => {
 
-    const {id} = req.params;
+    const { id } = req.params;
 
     //const eliminarUsuarioFisicamente = await UsuarioModelo.findByIdAndDelete(id);
     const eliminarUsuarioEstado = await UsuarioModelo.findByIdAndUpdate(id, {estado:false});
