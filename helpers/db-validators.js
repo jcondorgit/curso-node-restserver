@@ -76,7 +76,22 @@ const productoEstaHabilitado = async( id ) => {
 
 } 
 
+//Validar collecciones permitidas
+const colleccionesPermitidas = (coleccion ='', collecciones = []) => {
+    
+    const existeColeccion = collecciones.includes(coleccion);
+
+    if (!existeColeccion) {
+        
+        throw new Error(`La coleccion ${coleccion} no es permitida, ${colecciones}`);
+
+    }
+
+    return true;//
+}
+
 module.exports = { 
+    colleccionesPermitidas,
     esRolValido,
     emailExiste,
     idUsuarioExiste,
